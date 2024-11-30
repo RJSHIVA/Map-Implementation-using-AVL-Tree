@@ -189,24 +189,41 @@ class Map {
         // Create a new map instance
         Map map = new Map();
 
-        // Insertions
-        map.put(132, 3);
-        map.put(34, 5);
-        map.put(42, 7);
-        map.put(-83, 4);
-        map.put(66, 9);
-        map.put(197, 8);
-        map.put(-2, -88);
+        // Test Case 1: Basic insertions
+        map.put(132, 3); // Insert key 132 with value 3
+        map.put(34, 5);  // Insert key 34 with value 5
+        map.put(42, 7);  // Insert key 42 with value 7
+        map.put(-83, 4); // Insert key -83 with value 4
+        map.put(66, 9);  // Insert key 66 with value 9
+        map.put(197, 8); // Insert key 197 with value 8
+        map.put(-2, -88);// Insert key -2 with value -88
 
-        // Update key 42
-        map.put(42, 55);
+        // Test Case 2: Update existing key
+        map.put(42, 55); // Update key 42 with a new value 55
 
-        // Access values using keys
-        int[] arr = {132, -34, 34, 42, -83, 60, 66, 197, -2, 56, 1, -3442};
+        // Test Case 3: Retrieve existing keys
         System.out.println("Key: Value");
-        for (int key : arr) {
-            // If key is not found, it returns 0
-            System.out.println("(" + key + ":" + map.get(key) + ") , ");
-        }
-    }
-}
+        System.out.println("Expected: 3, Actual: " + map.get(132)); // Test key 132
+        System.out.println("Expected: 5, Actual: " + map.get(34));  // Test key 34
+        System.out.println("Expected: 55, Actual: " + map.get(42)); // Test updated key 42
+        System.out.println("Expected: 4, Actual: " + map.get(-83)); // Test key -83
+
+        // Test Case 4: Retrieve non-existing keys
+        System.out.println("Expected: 0, Actual: " + map.get(-34)); // Non-existing key
+        System.out.println("Expected: 0, Actual: " + map.get(60));  // Non-existing key
+        System.out.println("Expected: 0, Actual: " + map.get(56));  // Non-existing key
+
+        // Test Case 5: Negative keys
+        System.out.println("Expected: -88, Actual: " + map.get(-2)); // Test key -2 with negative value
+
+        // Test Case 6: Check tree balancing
+        map.put(1, 10);   // Insert key 1 to test balancing
+        map.put(500, 20); // Insert a large key to test balancing
+        map.put(-500, 30); // Insert a small key to test balancing
+        System.out.println("Expected: 10, Actual: " + map.get(1));   // Confirm new key exists
+        System.out.println("Expected: 20, Actual: " + map.get(500)); // Confirm new key exists
+        System.out.println("Expected: 30, Actual: " + map.get(-500)); // Confirm new key exists
+
+        // Test Case 7: Edge case - empty map
+        Map emptyMap = new Map();
+       
